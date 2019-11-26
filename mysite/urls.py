@@ -20,6 +20,7 @@ urlpatterns = [
     #관리자 url
     path('admin/', admin.site.urls),
     #접속 요청을 blog.urls로 전송해 추가 명령을 찾는다
+    #blog 디렉토리 아래의 urls 모듈에서 해석
     path('', include('blog.urls')),
 ]
 
