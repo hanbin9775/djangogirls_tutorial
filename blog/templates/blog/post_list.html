@@ -1,17 +1,13 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class ="post">
+            <p>published: {{ post.published_date }}</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <!--pk는 데이터베이스의 각 레코드를 식별하는 기본키-->
+            <!--post 모델에서 기본키를 지정해주지 않았기 때문에 장고는 pk라는 필드를 추가해 새로운 블로그 게시물이 추가될 때마다 그 값이 1,2,3 으로 증가하게 된다.-->
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h1><a href="">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
